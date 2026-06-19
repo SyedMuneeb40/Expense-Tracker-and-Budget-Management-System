@@ -1,0 +1,47 @@
+﻿@model ExpenseTracker.Models.Transaction
+
+@{
+    ViewData["Title"] = "Transaction";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h4>Add Transaction</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="AddOrEdit">
+                    <input type="hidden" asp-for="TransactionId" />
+
+                    <div class="mb-3">
+                        <label asp-for="CategoryId" class="form-label">Category</label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "Title"))"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Amount" class="form-label">Amount</label>
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Note" class="form-label">Note (Optional)</label>
+                        <input asp-for="Note" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Date" class="form-label">Date</label>
+                        <input asp-for="Date" type="date" class="form-control" />
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a asp-controller="Dashboard" asp-action="Index" class="btn btn-secondary">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
